@@ -1,3 +1,7 @@
+using System.Windows.Forms;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Webp;
+
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
@@ -40,7 +44,10 @@ namespace WinFormsApp1
                 string orgext = GetExtensionFromFullPath(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
                                                                     // MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
                                                                     //System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
-                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
+                // System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
+                SixLabors.ImageSharp.Image img = SixLabors.ImageSharp.Image.Load(fileName);
+                //メモ 拡張子でWebPだったらImageSharpを使うようにする
+
 
 
                 System.Drawing.Image orgimg = System.Drawing.Image.FromFile(fileName);
@@ -56,24 +63,26 @@ namespace WinFormsApp1
                     switch (targetFormat)
                     {
                         case "PNG":
-                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Png);
+                            img.SaveAsPng(newFileName);
                             img.Dispose();
                             break;
                         case "ICO":
-                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Icon);
+                            img.SaveAsPng(newFileName);
+                            //あとでSystem.Drawing.Imageでicoに変換するように治す
                             img.Dispose();
                             break;
                         case "JPEG":
                         case "JPG":
-                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            img.SaveAsPng(newFileName);
                             img.Dispose();
                             break;
                         case "BMP":
-                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                            img.SaveAsPng(newFileName);
                             img.Dispose();
                             break;
                         case "WebP":
-                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Webp);
+                            WebpEncoder we = new WebpEncoder() { FileFormat = WebpFileFormatType.Lossy, Quality = 80 };
+                            img.SaveAsWebp(newFileName);
                             img.Dispose();
                             break;
                         default:
