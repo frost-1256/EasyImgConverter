@@ -37,6 +37,48 @@ namespace WinFormsApp1
 
                 string orgext = GetExtensionFromFullPath(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
                 MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
+                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
+
+                System.Drawing.Image orgimg = System.Drawing.Image.FromFile(fileName);
+                try
+                {
+                    // 画像を変換するフォーマットを取得
+                    string targetFormat = comboBox2.SelectedItem.ToString().ToUpper();
+
+                    // 保存先のファイルパスを生成
+                    string newFileName = System.IO.Path.ChangeExtension(fileName, targetFormat.ToLower());
+
+                    // 画像を指定されたフォーマットで保存
+                    switch (targetFormat)
+                    {
+                        case "PNG":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Png);
+                            break;
+                        case "ICO":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Icon);
+                            break;
+                        case "JPEG":
+                        case "JPG":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            break;
+                        case "BMP":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                            break;
+                        case "GIF":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Gif);
+                            break;
+                        default:
+                            MessageBox.Show("対応していないフォーマットです: " + targetFormat);
+                            return;
+                    }
+
+                    MessageBox.Show($"変換が完了しました: {newFileName}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                }
+                // 変換処理を実行する
             }
         }
 
@@ -69,6 +111,48 @@ namespace WinFormsApp1
                 MessageBox.Show(fileName); // 修正: MessageBox.Showを使用してファイル名を表示  
                 string orgext = GetExtensionFromFullPath(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
                 MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
+
+                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
+                                                                                    // 変換処理を実行する
+                try
+                {
+                    // 画像を変換するフォーマットを取得
+                    string targetFormat = comboBox2.SelectedItem.ToString().ToUpper();
+
+                    // 保存先のファイルパスを生成
+                    string newFileName = System.IO.Path.ChangeExtension(fileName, targetFormat.ToLower());
+
+                    // 画像を指定されたフォーマットで保存
+                    switch (targetFormat)
+                    {
+                        case "PNG":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Png);
+                            break;
+                        case "ICO":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Icon);
+                            break;
+                        case "JPEG":
+                        case "JPG":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            break;
+                        case "BMP":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                            break;
+                        case "GIF":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Gif);
+                            break;
+                        default:
+                            MessageBox.Show("対応していないフォーマットです: " + targetFormat);
+                            return;
+                    }
+
+                    MessageBox.Show($"変換が完了しました: {newFileName}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                }
+                // 変換処理を実行する
             }
         }
 
