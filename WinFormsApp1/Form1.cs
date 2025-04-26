@@ -32,18 +32,20 @@ namespace WinFormsApp1
                 // GetDataにより取得したString型の配列から要素を取り出す。  
                 var fileName = files[i];
                 Console.Write(fileName);
-                MessageBox.Show(fileName); // 修正: MessageBox.Showを使用してファイル名を表示  
+                // MessageBox.Show(fileName); // 修正: MessageBox.Showを使用してファイル名を表示  
                 GetExtensionFromFullPath(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
 
                 string orgext = GetExtensionFromFullPath(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
-                MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
-                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
+                                                                    // MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
+                                                                    //System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
+                Bitmap img = new Bitmap(fileName);
+
 
                 System.Drawing.Image orgimg = System.Drawing.Image.FromFile(fileName);
                 try
                 {
                     // 画像を変換するフォーマットを取得
-                    string targetFormat = comboBox2.SelectedItem.ToString().ToUpper();
+                    string targetFormat = comboBox1.SelectedItem.ToString();
 
                     // 保存先のファイルパスを生成
                     string newFileName = System.IO.Path.ChangeExtension(fileName, targetFormat.ToLower());
@@ -72,7 +74,7 @@ namespace WinFormsApp1
                             return;
                     }
 
-                    MessageBox.Show($"変換が完了しました: {newFileName}");
+                    // MessageBox.Show($"変換が完了しました: {newFileName}");
                 }
                 catch (Exception ex)
                 {
@@ -108,16 +110,17 @@ namespace WinFormsApp1
                 // GetDataにより取得したString型の配列から要素を取り出す。  
                 var fileName = files[i];
                 Console.Write(fileName);
-                MessageBox.Show(fileName); // 修正: MessageBox.Showを使用してファイル名を表示  
+                //MessageBox.Show(fileName); // 修正: MessageBox.Showを使用してファイル名を表示  
                 string orgext = GetExtensionFromFullPath(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
-                MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
+                //MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
 
-                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
-                                                                                    // 変換処理を実行する
+                // System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
+                Bitmap img = new Bitmap(fileName);
+                // 変換処理を実行する
                 try
                 {
                     // 画像を変換するフォーマットを取得
-                    string targetFormat = comboBox2.SelectedItem.ToString().ToUpper();
+                    string targetFormat = comboBox2.SelectedItem.ToString();
 
                     // 保存先のファイルパスを生成
                     string newFileName = System.IO.Path.ChangeExtension(fileName, targetFormat.ToLower());
@@ -142,7 +145,7 @@ namespace WinFormsApp1
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Gif);
                             break;
                         default:
-                            MessageBox.Show("対応していないフォーマットです: " + targetFormat);
+                            // MessageBox.Show("対応していないフォーマットです: " + targetFormat);
                             return;
                     }
 
