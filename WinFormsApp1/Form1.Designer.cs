@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            checkBox1 = new CheckBox();
             label1 = new Label();
             comboBox1 = new ComboBox();
             panel2 = new Panel();
             label2 = new Label();
             comboBox2 = new ComboBox();
-            checkBox1 = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -54,6 +54,17 @@
             panel1.DragDrop += panel1_DragDrop;
             panel1.DragEnter += panel1_DragEnter;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(74, 3);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(92, 19);
+            checkBox1.TabIndex = 3;
+            checkBox1.Text = "常に上に表示";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -67,7 +78,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "WebP", "PNG", "JPG", "ICO" });
+            comboBox1.Items.AddRange(new object[] { "WebP", "PNG", "JPG" });
             comboBox1.Location = new Point(3, 326);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(194, 23);
@@ -100,22 +111,11 @@
             // 
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "WebP", "PNG", "JPG", "ICO" });
+            comboBox2.Items.AddRange(new object[] { "WebP", "PNG", "JPG" });
             comboBox2.Location = new Point(3, 326);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(194, 23);
             comboBox2.TabIndex = 1;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(74, 3);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(92, 19);
-            checkBox1.TabIndex = 3;
-            checkBox1.Text = "常に上に表示";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // Form1
             // 
