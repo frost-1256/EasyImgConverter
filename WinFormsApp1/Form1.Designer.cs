@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label1 = new Label();
             comboBox1 = new ComboBox();
             panel2 = new Panel();
+            label2 = new Label();
             comboBox2 = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -39,35 +41,65 @@
             // panel1
             // 
             panel1.AllowDrop = true;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(comboBox1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 361);
             panel1.TabIndex = 0;
+            panel1.DragDrop += panel1_DragDrop;
+            panel1.DragEnter += panel1_DragEnter;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(65, 15);
+            label1.TabIndex = 1;
+            label1.Text = "プロファイル1";
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "WebP", "PNG", "JPG", "ICO" });
             comboBox1.Location = new Point(3, 326);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(194, 23);
-            comboBox1.TabIndex = 0;
+            comboBox1.TabIndex = 2;
             // 
             // panel2
             // 
             panel2.AllowDrop = true;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(label2);
             panel2.Controls.Add(comboBox2);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(204, 0);
+            panel2.Location = new Point(209, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(200, 361);
             panel2.TabIndex = 1;
+            panel2.DragDrop += panel2_DragDrop;
+            panel2.DragEnter += panel2_DragEnter;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(65, 15);
+            label2.TabIndex = 2;
+            label2.Text = "プロファイル2";
             // 
             // comboBox2
             // 
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(6, 326);
+            comboBox2.Items.AddRange(new object[] { "WebP", "PNG", "JPG", "ICO" });
+            comboBox2.Location = new Point(3, 326);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(194, 23);
             comboBox2.TabIndex = 1;
@@ -76,13 +108,21 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(404, 361);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(409, 361);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            MaximizeBox = false;
+            MaximumSize = new Size(425, 400);
+            MinimumSize = new Size(425, 400);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -92,5 +132,7 @@
         private ComboBox comboBox1;
         private Panel panel2;
         private ComboBox comboBox2;
+        private Label label1;
+        private Label label2;
     }
 }
