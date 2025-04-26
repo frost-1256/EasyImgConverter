@@ -11,6 +11,8 @@ namespace WinFormsApp1
         {
             comboBox1.SelectedItem = "PNG"; // comboBox Default value  
             comboBox2.SelectedItem = "ICO"; // comboBox Default value  
+            this.TopMost = Properties.Settings.Default.istop;
+            checkBox1.Checked = Properties.Settings.Default.istop;
         }
         private string GetExtensionFromFullPath(string file)
         {
@@ -38,7 +40,7 @@ namespace WinFormsApp1
                 string orgext = GetExtensionFromFullPath(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
                                                                     // MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
                                                                     //System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
-                Bitmap img = new Bitmap(fileName);
+                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
 
 
                 System.Drawing.Image orgimg = System.Drawing.Image.FromFile(fileName);
@@ -55,19 +57,24 @@ namespace WinFormsApp1
                     {
                         case "PNG":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Png);
+                            img.Dispose();
                             break;
                         case "ICO":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Icon);
+                            img.Dispose();
                             break;
                         case "JPEG":
                         case "JPG":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            img.Dispose();
                             break;
                         case "BMP":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                            img.Dispose();
                             break;
-                        case "GIF":
-                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Gif);
+                        case "WebP":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Webp);
+                            img.Dispose();
                             break;
                         default:
                             MessageBox.Show("対応していないフォーマットです: " + targetFormat);
@@ -115,7 +122,7 @@ namespace WinFormsApp1
                 //MessageBox.Show(orgext); // 修正: MessageBox.Showを使用してファイル名を表示
 
                 // System.Drawing.Image img = System.Drawing.Image.FromFile(fileName); // 修正: MessageBox.Showを使用してファイル名を表示
-                Bitmap img = new Bitmap(fileName);
+                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
                 // 変換処理を実行する
                 try
                 {
@@ -130,26 +137,29 @@ namespace WinFormsApp1
                     {
                         case "PNG":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Png);
+                            img.Dispose();
                             break;
                         case "ICO":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Icon);
+                            img.Dispose();
                             break;
                         case "JPEG":
                         case "JPG":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            img.Dispose();
                             break;
                         case "BMP":
                             img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                            img.Dispose();
                             break;
-                        case "GIF":
-                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Gif);
+                        case "WebP":
+                            img.Save(newFileName, System.Drawing.Imaging.ImageFormat.Webp);
+                            img.Dispose();
                             break;
                         default:
                             // MessageBox.Show("対応していないフォーマットです: " + targetFormat);
                             return;
                     }
-
-                    MessageBox.Show($"変換が完了しました: {newFileName}");
                 }
                 catch (Exception ex)
                 {
@@ -168,6 +178,22 @@ namespace WinFormsApp1
             else
             {
                 e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                Properties.Settings.Default.istop = true;
+                Properties.Settings.Default.Save();
+                this.TopMost = true;
+            }
+            else
+            {
+                this.TopMost = Properties.Settings.Default.istop = false;
+                Properties.Settings.Default.Save();
+                this.TopMost = false;
             }
         }
     }

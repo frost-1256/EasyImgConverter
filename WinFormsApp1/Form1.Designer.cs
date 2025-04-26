@@ -34,6 +34,7 @@
             panel2 = new Panel();
             label2 = new Label();
             comboBox2 = new ComboBox();
+            checkBox1 = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -42,6 +43,7 @@
             // 
             panel1.AllowDrop = true;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(comboBox1);
             panel1.Dock = DockStyle.Left;
@@ -55,7 +57,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(3, 4);
             label1.Name = "label1";
             label1.Size = new Size(65, 15);
             label1.TabIndex = 1;
@@ -104,6 +106,17 @@
             comboBox2.Size = new Size(194, 23);
             comboBox2.TabIndex = 1;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(74, 3);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(92, 19);
+            checkBox1.TabIndex = 3;
+            checkBox1.Text = "常に上に表示";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -134,5 +147,6 @@
         private ComboBox comboBox2;
         private Label label1;
         private Label label2;
+        private CheckBox checkBox1;
     }
 }
